@@ -1,0 +1,22 @@
+name "epistochmodels"
+description "CTMC epidemic models in D for Python"
+authors "Flávio Codeco Coelho"
+copyright "Copyright © 2019, Flávio Codeco Coelho"
+license "MIT"
+dependency "mir-core" version="~>1.0.2"
+dependency "mir" version="~>3.2.0"
+dependency "mir-random" version="~>2.2.6"
+dependency "mir-algorithm" version="~>3.5.6"
+license "MIT"
+
+configuration "library" {
+	targetType "library"
+}
+
+configuration "plugin" {
+	dependency "sil-lang" path="../../../lang"
+	targetType "dynamicLibrary"
+	versions "SIL_Plugin" "SIL"
+}
+
+

@@ -20,7 +20,6 @@ import multinomial: multinomialVar;
 import mir.array.allocation;
 import mir.ndslice;
 import mir.ndslice.fuse;
-import pyd.pyd;
 
 ///SIR model class.
 class SIR
@@ -288,18 +287,3 @@ class Influenza
     }
 }
 
-
-/**
-* Python wrapper
-*/
-extern (C) void PydMain()
-{
-    module_init();
-    wrap_class!(SIR, Def!(SIR.initialize), Def!(SIR.run), Init!(const uint, const double, const double))();
-    wrap_class!(SIR_Dem, Init!(const uint, const double, const double, const double), Def!(SIR_Dem.run), Def!(SIR_Dem.initialize))();
-    wrap_class!(Influenza, Init!(uint, double[]),
-    Def!(Influenza.initialize),
-    Def!(Influenza.add_forcing),
-    Def!(Influenza.run)
-    )();
-}

@@ -1,0 +1,22 @@
+import * from epidemic
+beta=0.1
+gam=1.0/21
+N=150000
+constant=false
+I0=2
+tf=365.0
+model=SIR(N,beta,gam)
+model.initialize(N-I0,I0,0)
+sim=model.run(0,tf,1)
+
+// FIXME - replace with each
+sim[0] |> enumerate |> map(row =>
+	print(row[1] |> text ~"," ~ sim[row[1]] |>text ~ "," ~ sim[row[2]] |> text ~ "," ~ sim[row[3]] |> text)
+)
+
+alpha = 0.1
+model2 = SIR_Dem(N,alpha,beta,gam)
+model2.initialize(N-I0, I0, 0)
+sim2 = model2.run(0, tf,1)
+sim2
+//print("Number of steps for SIR_Dem: " ~ len(sim2[0])|> text ~ "," ~len(sim2[1])|>text ~ "," ~ len(sim2[2])|>text ~ "," ~ len(sim2[3]) |>text)
